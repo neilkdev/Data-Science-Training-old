@@ -1,4 +1,4 @@
-# D3 Fundamentals - Day Two #
+#D3 Technical Course - Part 2
 
 Now we're going to learn about transitions, events, margins & axes, then a few D3 examples so you'll know how they work.
 
