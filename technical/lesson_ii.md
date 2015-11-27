@@ -1,266 +1,279 @@
 #D3 Technical Course - Part 2
 
-Now we're going to learn about transitions, events, margins & axes, then a few D3 examples so you'll know how they work.
+The goal for this lesson will be for you to understand how goal.html works. Let's take a look at the code and see what we understand already.
 
---- 
-
-###Transitions
-Transitions are functions within the D3 library that allow for seamless transitions between changes in your D3. They're a great way to add more interaction to your visualization. 
-
-Let's go back to index.html, and try adding some transitions while we make changes
 ```javascript
-var dataset = [10,20,30,40];
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>D3 Basics</title>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  </head>
 
-var svg = d3.select("body").append("svg")
-.attr("width",700)
-.attr("height", 700);
+  <body>
 
-var circles = svg.selectAll("circle");
+    <script>
 
-circles.data(dataset)
-.enter().append("circle")
-.attr("r", function(d) { return d*2; })
-.attr("cx", function(d,i) { return (i + 1) *100; } )
-.attr("cy", function(d,i) { return (i + 1) *100; } )
-.attr("fill", function(d) { if( d == '10' ) { return "red"; } 
-                        else if( d == '20' ) { return "blue"; }
-                        else if( d == '30' ) { return "green"; }
-                        else if( d == '40' ) { return "orange"; }
-    })
-.style("fill-opacity", .7)
-.style("stroke-width",".2em")
-.style("stroke",function(d) { if( d == '10' ) { return "red"; } 
-                        else if( d == '20' ) { return "blue"; }
-                        else if( d == '30' ) { return "green"; }
-                        else if( d == '40' ) { return "orange"; }
-    }); 
+    var dataset = [10, 5, 23, 12, 50, 2, 13, 8],
+        colorScale = d3.scale.category20c();
+
+    var svg = d3.select("body").append("svg")
+        .attr("width", 600)
+        .attr("height", 600)
+
+    svg.selectAll("rect")
+      .data(dataset)
+       .enter().append("rect")
+      .attr("x", function(d,i) { return i * 40; })
+      .attr("y", 10)
+      .attr("width", 30)
+      .attr("height", function(d) { return d * 10; })
+      .style("fill", function(d,i) { return colorScale(i); });
+
+    </script>
+  </body>
+</html>
 ```
 
-Now let's add a trasition to the update:
+- src="http://d3js.org/d3.v3.min.js" charset="utf-8"
+- d3.scale, d3.select("body")?
+- function(d), function(d,i)?
+- rect, x, y?
+- selectAll(), data(), enter(), append()?
+- svg a variable?
+- Coordinate space inverted?
+
+**Remember D3 is a Javascript framework, so there are all these functions specific to D3**
+
+*For the full list of functions and uses, go [here](https://github.com/mbostock/d3/wiki/API-Reference)* 
+<br />
+---
+
+###Selections
+D3 is **data-driven-documentation**, and what that means is we are binding data to DOM elements. To do that, we need to select DOM elements, and specify what we want to bind.
+<br /><br />
+There are two key functions for selections in D3:
+- select() - grabs one element (the first)
+- selectAll() - grabs all matching elements
+
+![DOM Tree Example](http://cdn0.mos.techradar.futurecdn.net/Review%20images/Linux%20Format/Issue%20118/DOM%20tree%20inline2-420-90.jpg "DOM Tree Example")
+
+D3 selections are based on CSS selectors, so you can use any of the following to select your d3 elements:
+```
+#grabthis       ==   <anything id="grabthis">
+.grabthis       ==   <anything class="grabthis">
+grabthis        ==   <grabthis>
+grab = this     ==   <anything grab="this">
+grab this       ==   <grab><this></grab>
+```
+*For the most part, you don't want to write code that requires you to select things in 5 different ways. Most go with the simple "grabthis" and ".grabthis" approach, but it's nice to know you have options.*
+
+<br />
+---
+Let's go back to our index.html example and try to do the following:
+```
+Grab the first p tag
+Grab the third p tag
+Grab all the p tags
+```
+*For each of these examples, look at what you got in the javascript console and figure out why it's the right selection.*
+
+
+For more on how selections work, check out Mike Bostock's [awesome post about it](http://bost.ocks.org/mike/selection/), which I will admit, is a little intimidating.
+
+<br />
+---
+Now that we can select things, let's start doing things! Try out some of the following on index.html:
 ```javascript
-var dataset = [10,20,30,40];
-
-var svg = d3.select("body").append("svg")
-.attr("width",700)
-.attr("height", 700);
-
-var circles = svg.selectAll("circle");
-
-circles.data(dataset)
-.enter().append("circle")
-.transition()
-.duration(2000)
-.attr("r", function(d) { return d*2; })
-.attr("cx", function(d,i) { return (i + 1) *100; } )
-.attr("cy", function(d,i) { return (i + 1) *100; } )
-.attr("fill", function(d) { if( d == '10' ) { return "red"; } 
-                        else if( d == '20' ) { return "blue"; }
-                        else if( d == '30' ) { return "green"; }
-                        else if( d == '40' ) { return "orange"; }
-    })
-.style("fill-opacity", .7)
-.style("stroke-width",".2em")
-.style("stroke",function(d) { if( d == '10' ) { return "red"; } 
-                        else if( d == '20' ) { return "blue"; }
-                        else if( d == '30' ) { return "green"; }
-                        else if( d == '40' ) { return "orange"; }
-    });
+d3.select("p").style("color","red");
+d3.selectAll("p").style("font-size","20px");
+d3.select("#da_id").style("background-color","green");
 ```
 
-See what happened? 
+While that's fun, what we really want to learn is how to bind **data**. Type in the following and check out the result:
+```javascript
+d3.select("p");
+```
+Now enter this and see what changed:
+```javascript
+d3.select("p").data([10])
+```
+See that __data__ property? That's your data!
 
-Let's play with some of the transition parameters to change our transitions:
-- ease()
-- delay()
-- duration()
+Before we start going more into selections, let's talk about SVGs.
+
+<br />
+---
+###SVGs 
+For every D3 visualization, you will need a SVG, your canvas. SVGs are html objects, so can make them in html simply by writing:
+```javascript
+<svg width="700" height="700"></svg>
+```
+
+Inside that SVG is where you place your objects, which must be SVG objects. Here's an example you can add to your basic.html file:
+```javascript
+<svg width="700" height="700">
+  <circle cx="100" cy="100" r="50" fill="red">
+</svg>
+```
+Add this code to your index.html, and reload the page.
+<br />
+Now, with your knowledge of select(), try the following:
+```
+Make the circle green
+Make the circle HUGE
+Make the circle tiny
+Make the circle disappear!
+```
+
+*[Go here](http://www.w3schools.com/svg/default.asp) to see all the SVG objects and what attributes they require. This is important, as often, issues with creating different SVG objects happens when one uses the wrong attributes, such as setting x and y coordinates for a cirlce, which require cx and cy coordinates.*
+
+<br />
+---
+###Enter, Update, and Exit
+
+![D3 Venn](https://s3.amazonaws.com/assets-paperboy/adunkman/techtime-understanding-d3-selection-operations-venn.png "D3 Venn")
+
+- Enter : used to add / create objects with bounded data
+- Update : used to update existing objects with bounded data 
+- Exit : used to update existing objects and remove objects when there is no element to match to data
+*If you wanted to remove all objects, you use the .remove() function*
+<br />
+Let's go back to index.html, and try binding data to our cicle using these methods.
 
 ```javascript
-var newdata = [30,10,20,40];
-
+// Define your data 
+var dataset = [10]
+// Select the cirlce, and update it with data
 d3.select("svg").selectAll("circle")
-.data(newdata)
-.transition()
-.duration(2000)
-.ease("elastic")
-.delay(200)
+.data(dataset);
+```
+Select the circle and look at the data property to confirm it's updated. That's the update method. Simply select your objects and use the data() function to update them with data. To note, you only want to do this when there's a 1 to 1 relationship between your objects and your data.
+
+<br />
+---
+Now, let's use a larger dataset, and try the enter method.
+
+```javascript
+// Define new dataset
+var dataset = [10,20,30]
+//Select the circle, use the enter() function and append circles to match the data
+d3.select("svg").selectAll("circle")
+.data(dataset)
+.enter().append("circle");
+```
+- Where are the circles?
+<br /> 
+```javascript
+d3.select("svg")
+.selectAll("circle")
 .attr("r", function(d) { return d*2; })
-.attr("cx", function(d,i) { return (i + 1) *100; } )
-.attr("cy", function(d,i) { return (i + 1) *100; } )
+.attr("cx", function(d) { return d*10; } )
+.attr("cy", function(d) { return d*10; } )
 .attr("fill", function(d) { if( d == '10' ) { return "red"; } 
                         else if( d == '20' ) { return "blue"; }
                         else if( d == '30' ) { return "green"; }
-                        else if( d == '40' ) { return "orange"; }
     })
 .style("fill-opacity", .7)
 .style("stroke-width",".2em")
 .style("stroke",function(d) { if( d == '10' ) { return "red"; } 
                         else if( d == '20' ) { return "blue"; }
                         else if( d == '30' ) { return "green"; }
-                        else if( d == '40' ) { return "orange"; }
-    });
+    });    
 ```
-
-- ease() // applies various time value ranges
-- delay() // add a delay 
-- duration() // say how long you want it to be
-<br />
-For more transition parameters, [check out the API](https://github.com/mbostock/d3/wiki/API-Reference#d3-core).
+- What's this function(d)?
+- What's cx and cy?
+- What's r?
 <br />
 
 ---
 
-###Events
+Ok, so now we know how to update and enter new data. Let's go over exit()
 
-Because D3 is a Javascript framework, we can use the different [Javascript Events](http://www.w3schools.com/js/js_events.asp) to add interaction to our visualization.
-
-Javascript Events are things that either user or the browser to does that affects HTML elements. Some common events are "onclick" or "onmouseover"
-<br />
-Let's go back to index.html and add this:
+Say we want to update our circles with a smaller dataset, and remove circles that don't match. Here is where we'll use the exit() function.
 
 ```javascript
-function somethingCool() {
-    d3.select(this)
-      .style("color", "red");
-  }
-
-d3.select("p")
-.on("mouseover",somethingCool)
+// Define new dataset
+var newdataset = [20,30]
+//Select the circle, use the enter() function and append circles to match the data
+d3.select("svg").selectAll("circle")
+.data(newdataset)
+.exit().remove();
 ```
-What's going on here?
-<br />
-- We defined the event function.
-- We specified where and when it should occur.
+What happened? Is that right?
+<br /> 
+In D3, write need to say what you want. We updated the data, removed the circle, now we need to set the attributes of those circles based on the new data.
 
-What's the mistake here?
-
-<br />
-How could we add this to our circles?
+Simply re-enter
 
 ```javascript
-function somethingCool() {
-    d3.select(this)
-      .style("fill", "red");
-  }
-
-d3.selectAll("circle")
-.on("mouseover",somethingCool)
-```
-That select(this) is important, as it says that we're doing it to just this matched element not all of them, even though we allowed any to be selected with the selectAll().
-<br />
-You can add transitions to this to make even cooler events 
-
-```javascript
-function somethingCool() {
-    d3.select(this)
-    .transition()
-    .duration(5000)
-    .ease("elastic")
-    .delay(100)
-      .style("fill", "black")
-      .style("stroke-width","0em");
-      
-  }
-
-d3.selectAll("circle")
-.on("mouseover",somethingCool)
-
-```
-<br />
-We didn't cover this with transitions before, but you can chain transitions, which are fun to do with events:
-
-```javascript
-function somethingCool() {
-    d3.select(this)
-    .transition()
-    .duration(2000)
-    .ease("elastic")
-    .delay(100)
-      .style("fill", "black")
-      .style("stroke-width","0em")
-    .transition()
-    .duration(2000)
-    .ease("elastic")
-    .style("fill", function(d) { if( d == '10' ) { return "red"; } 
+d3.select("svg")
+.selectAll("circle")
+.attr("r", function(d) { return d*2; })
+.attr("cx", function(d) { return d*10; } )
+.attr("cy", function(d) { return d*10; } )
+.attr("fill", function(d) { if( d == '10' ) { return "red"; } 
                         else if( d == '20' ) { return "blue"; }
                         else if( d == '30' ) { return "green"; }
-                        else if( d == '40' ) { return "orange"; }
-         })
-    .style("fill-opacity", .7)
-    .style("stroke-width",".2em")
-    .style("stroke",function(d) { if( d == '10' ) { return "red"; } 
+    })
+.style("fill-opacity", .7)
+.style("stroke-width",".2em")
+.style("stroke",function(d) { if( d == '10' ) { return "red"; } 
                         else if( d == '20' ) { return "blue"; }
                         else if( d == '30' ) { return "green"; }
-                        else if( d == '40' ) { return "orange"; }
-        });
-      
-  }
-
-d3.selectAll("circle")
-.on("mouseover",somethingCool)
+    });    
 ```
+
+That's the enter, update, and exit approach to binding data in D3.
 <br />
-Here's another one for fun:
+
+
+###Review
+
+Now that we got a good sense of selections, SVGs and how to bind data, let's go back to our first visualization and answer a few questions:
 
 ```javascript
-function somethingCool() {
-    d3.select(this)
-    .transition()
-    .duration(2000)
-    .ease("elastic")
-    .delay(100)
-    .attr("r", function(d) { return d*.25; })
-    .attr("cx", function(d,i) { return Math.random()*100; } )
-    .attr("cy", function(d,i) { return Math.random()*100; } )
-    .transition()
-    .duration(2000)
-    .ease("elastic")
-    .attr("r", function(d) { return d*2; })
-    .attr("cx", function(d,i) { return (i + 1) *100; } )
-    .attr("cy", function(d,i) { return (i + 1) *100; } );
-  }
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>D3 Basics</title>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  </head>
 
-d3.selectAll("circle")
-.on("mouseover",somethingCool)
+  <body>
+
+    <script>
+
+    var dataset = [10, 5, 23, 12, 50, 2, 13, 8],
+        colorScale = d3.scale.category20c();
+
+    var svg = d3.select("body").append("svg")
+        .attr("width", 600)
+        .attr("height", 600)
+
+    svg.selectAll("rect")
+      .data(dataset)
+       .enter().append("rect")
+      .attr("x", function(d,i) { return i * 40; })
+      .attr("y", 10)
+      .attr("width", 30)
+      .attr("height", function(d) { return d * 10; })
+      .style("fill", function(d,i) { return colorScale(i); });
+
+    </script>
+  </body>
+</html>
 ```
-<br />
----
-
-### Margins, Axes, and Transform() ###
-
-For this, we'll be going through [Bostock's Margin](http://bl.ocks.org/mbostock/3019563) example. This is a great example to show:
-- Why we use margins
-- What < g > tags are used for
-- How to make axes
-
-Open up the axes.html file, and let's walk through each part. 
-
-*Learn through removing things.*
-
-*Think about the defaults.*
-
-
----
-###First Example
-
-We're now going to go through an example by Mike Bostock for a scatterplot visualization. In this example, we'll learn about pulling data from a file into a visualization.
-
-Get the files [here](http://bl.ocks.org/mbostock/3887118).
-
----
-###D3 Resources
-
-Let's go through the [D3 Resource](/Resources.md) repository I set up and see what you have at your disposal.
+- Why is SVG a variable?
+- Why do we say selectAll before the rectangles exist?
+- What's that colorScale thing?
 
 <br />
-<br />
-
-##Second Challenge
-
-Take [one](http://bl.ocks.org/mbostock/3887118) [of](http://bl.ocks.org/mbostock/3884955) [these](http://bl.ocks.org/mbostock/3885304) [Bostock](http://bl.ocks.org/mbostock/9490313) [examples](http://bl.ocks.org/mbostock/3883245) and use your own data to make your own visualization using (enter in public opensource data)
 
 
+##Quiz Time
 
-
-
-
+1. Make an SVG with five circles, each with a different color, using data.
+2. Make an SVG with five circles, ordered diagonally across the SVG.
+3. Make an SVG with five circles, ordered randomly across the SVG. **(Hint: Math.random())**
 
