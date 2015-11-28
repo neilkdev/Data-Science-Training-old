@@ -1,5 +1,5 @@
 
-![Metis](https://github.com/pstuffa/classWerk/blob/master/metis_logo.png)
+![Metis](https://github.com/pstuffa/classWerk/blob/master/images/metis_logo.png)
 
 ##Setup 
 
