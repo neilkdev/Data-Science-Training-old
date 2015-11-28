@@ -42,7 +42,7 @@ body {
 }
 
 ```
-In this example, we're setting the font to the body tag to be 10px, sans-serif. The axis line & path have fill=none, a black stroke, and crispEdges. Elements with the dot class (.dot) have a black stroke. The syntax follows this structure - 
+In this example, we're setting the font to 10px, sans-serif. The axis line & path have fill=none, a black stroke, and crispEdges. Elements with the dot class (.dot) have a black stroke. The syntax follows this structure - 
 * specify the element 
 * open {
 * specify the style
@@ -51,9 +51,7 @@ In this example, we're setting the font to the body tag to be 10px, sans-serif. 
 
 
 ##Javascript
-
-The third pieces to D3 is Javascript 
-
+The third piece to D3 is Javascript. D3 is written in Javascript and is a Javascript framework.  
 
 * Open the Javascript Console in Google Chrome
 * Open index.html in your text editor
@@ -72,14 +70,19 @@ The third pieces to D3 is Javascript
 ---
 
 ###Variables
-In D3, as well as in most programming langauges, setting variables is very important functionality. It allows you to build upon a just a few configurations so your code scales and adjusts. In D3, a lot of what you'll write are variables, so that if you want to, say, adjust the size of your visualization, you can modify just a main width and height, which will then update the rest of the visualization (the size of the margins, the axes, the values in your visualization). In Javascript, which D3 is built on 
+In D3, a lot of what you write are variables, so that if you want to, say, adjust the size of your visualization, you modify just a main width and height, which will then update the rest of the visualization (the size of the margins, the axes, the values in your visualization). Variables in Javascript function like variables in most programming languages. 
 
+To create a variables, type "var" then the variable name, followed by an "=". Here are a few examples:
+```javascript
+var today = 'Monday';
 
-In Javascript, we can set integers to variable and treat them like integers. The difference in javascript is we have to explicitly state that they are variables, or "var." Arrays can also be variables, like var numbers = [1,2,3,4,5];
+var tomorrow = 'Tuesday';
 
+var currentYear = 2015;
+```
+Arrays can also be variables, like var numbers = [1,2,3,4,5];
 
 Let's make a few variables:
-
 ```
 1. Make a variable called numerator, equal to 99
 2. Make a variable called denominator, equal to 100
@@ -127,16 +130,13 @@ var data = [1,2,3,4,5]
 data.filter( function(x) { if(x * 2 == 2) {return x;}} );
 ```
 
-
 You can also map datasets with functions
 ```javascript
 var data = [1,2,3,4,5]
 
 data.map( function(x) { return x * 2 == 2; } );
 
-
 or 
-
 
 var data = [1,2,3,4,5]
 
@@ -147,7 +147,6 @@ data.map( function(x) { if(x * 2 == 2) { return x; } } );
 ---
 
 Let's make a few functions: 
-
 ```
 1. Make a function that adds 3 to any input
 2. Make a function that divides by three to any input
