@@ -1,6 +1,5 @@
 ##Javascript Basics
 
-
 ###Starting off 
 - Open the Javascript Console in Google Chrome
 - Open index.html in your text editor
