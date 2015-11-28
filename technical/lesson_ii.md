@@ -34,19 +34,18 @@ The goal for this lesson will be for you to understand how goal.html works. Let'
   </body>
 </html>
 ```
-
-- src="http://d3js.org/d3.v3.min.js" charset="utf-8"
-- d3.scale, d3.select("body")?
-- function(d), function(d,i)?
-- rect, x, y?
-- selectAll(), data(), enter(), append()?
-- svg a variable?
-- Coordinate space inverted?
+* src="http://d3js.org/d3.v3.min.js" charset="utf-8"
+* d3.scale, d3.select("body")?
+* function(d), function(d,i)?
+* rect, x, y?
+* selectAll(), data(), enter(), append()?
+* svg a variable?
+* Coordinate space inverted?
 
 **Remember D3 is a Javascript framework, so there are all these functions specific to D3**
 
 *For the full list of functions and uses, go [here](https://github.com/mbostock/d3/wiki/API-Reference)* 
-<br />
+
 ---
 
 ###Selections
@@ -68,7 +67,6 @@ grab this       ==   <grab><this></grab>
 ```
 *For the most part, you don't want to write code that requires you to select things in 5 different ways. Most go with the simple "grabthis" and ".grabthis" approach, but it's nice to know you have options.*
 
-<br />
 ---
 Let's go back to our index.html example and try to do the following:
 ```
@@ -81,7 +79,7 @@ Grab all the p tags
 
 For more on how selections work, check out Mike Bostock's [awesome post about it](http://bost.ocks.org/mike/selection/), which I will admit, is a little intimidating.
 
-<br />
+
 ---
 Now that we can select things, let's start doing things! Try out some of the following on index.html:
 ```javascript
@@ -102,7 +100,7 @@ See that __data__ property? That's your data!
 
 Before we start going more into selections, let's talk about SVGs.
 
-<br />
+
 ---
 ###SVGs 
 For every D3 visualization, you will need a SVG, your canvas. SVGs are html objects, so can make them in html simply by writing:
@@ -116,9 +114,7 @@ Inside that SVG is where you place your objects, which must be SVG objects. Here
   <circle cx="100" cy="100" r="50" fill="red">
 </svg>
 ```
-Add this code to your index.html, and reload the page.
-<br />
-Now, with your knowledge of select(), try the following:
+Add this code to your index.html, and reload the page. Now, with your knowledge of select(), try the following:
 ```
 Make the circle green
 Make the circle HUGE
@@ -128,7 +124,6 @@ Make the circle disappear!
 
 *[Go here](http://www.w3schools.com/svg/default.asp) to see all the SVG objects and what attributes they require. This is important, as often, issues with creating different SVG objects happens when one uses the wrong attributes, such as setting x and y coordinates for a cirlce, which require cx and cy coordinates.*
 
-<br />
 ---
 ###Enter, Update, and Exit
 
@@ -150,7 +145,6 @@ d3.select("svg").selectAll("circle")
 ```
 Select the circle and look at the data property to confirm it's updated. That's the update method. Simply select your objects and use the data() function to update them with data. To note, you only want to do this when there's a 1 to 1 relationship between your objects and your data.
 
-<br />
 ---
 Now, let's use a larger dataset, and try the enter method.
 
@@ -162,8 +156,8 @@ d3.select("svg").selectAll("circle")
 .data(dataset)
 .enter().append("circle");
 ```
-- Where are the circles?
-<br /> 
+* Where are the circles?
+
 ```javascript
 d3.select("svg")
 .selectAll("circle")
@@ -181,16 +175,12 @@ d3.select("svg")
                         else if( d == '30' ) { return "green"; }
     });    
 ```
-- What's this function(d)?
-- What's cx and cy?
-- What's r?
-<br />
+* What's this function(d)?
+* What's cx and cy?
+* What's r?
 
 ---
-
-Ok, so now we know how to update and enter new data. Let's go over exit()
-
-Say we want to update our circles with a smaller dataset, and remove circles that don't match. Here is where we'll use the exit() function.
+Ok, so now we know how to update and enter new data. Let's go over the exit() function. Say we want to update our circles with a smaller dataset, and remove circles that don't match. Here is where we'll use the exit() function.
 
 ```javascript
 // Define new dataset
@@ -200,12 +190,9 @@ d3.select("svg").selectAll("circle")
 .data(newdataset)
 .exit().remove();
 ```
-What happened? Is that right?
-<br /> 
-In D3, write need to say what you want. We updated the data, removed the circle, now we need to set the attributes of those circles based on the new data.
+What happened? Is that right? We updated the data, removed the circle, but now we need to set the attributes of those circles based on the new data.
 
 Simply re-enter
-
 ```javascript
 d3.select("svg")
 .selectAll("circle")
@@ -225,8 +212,6 @@ d3.select("svg")
 ```
 
 That's the enter, update, and exit approach to binding data in D3.
-<br />
-
 
 ###Review
 
@@ -264,15 +249,11 @@ Now that we got a good sense of selections, SVGs and how to bind data, let's go 
   </body>
 </html>
 ```
-- Why is SVG a variable?
-- Why do we say selectAll before the rectangles exist?
-- What's that colorScale thing?
-
-<br />
-
+* Why is SVG a variable?
+* Why do we say selectAll before the rectangles exist?
+* What's that colorScale thing?
 
 ##Quiz Time
-
 1. Make an SVG with five circles, each with a different color, using data.
 2. Make an SVG with five circles, ordered diagonally across the SVG.
 3. Make an SVG with five circles, ordered randomly across the SVG. **(Hint: Math.random())**

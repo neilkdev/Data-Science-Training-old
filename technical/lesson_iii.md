@@ -70,9 +70,9 @@ circles.data(dataset)
 See what happened? 
 
 Let's play with some of the transition parameters to change our transitions:
-- ease()
-- delay()
-- duration()
+* ease()
+* delay()
+* duration()
 
 ```javascript
 var newdata = [30,10,20,40];
@@ -99,24 +99,19 @@ d3.select("svg").selectAll("circle")
                         else if( d == '40' ) { return "orange"; }
     });
 ```
+* ease() // applies various time value ranges
+* delay() // add a delay 
+* duration() // say how long you want it to be
 
-- ease() // applies various time value ranges
-- delay() // add a delay 
-- duration() // say how long you want it to be
-<br />
 For more transition parameters, [check out the API](https://github.com/mbostock/d3/wiki/API-Reference#d3-core).
-<br />
 
 ---
-
 ###Events
-
 Because D3 is a Javascript framework, we can use the different [Javascript Events](http://www.w3schools.com/js/js_events.asp) to add interaction to our visualization.
 
 Javascript Events are things that either user or the browser to does that affects HTML elements. Some common events are "onclick" or "onmouseover"
-<br />
-Let's go back to index.html and add this:
 
+Let's go back to index.html and add this:
 ```javascript
 function somethingCool() {
     d3.select(this)
@@ -126,15 +121,12 @@ function somethingCool() {
 d3.select("p")
 .on("mouseover",somethingCool)
 ```
-What's going on here?
-<br />
-- We defined the event function.
-- We specified where and when it should occur.
+* What's going on here?
+    * We defined the event function.
+    * We specified where and when it should occur.
 
-What's the mistake here?
-
-<br />
-How could we add this to our circles?
+*What's the mistake here?
+*How could we add this to our circles?
 
 ```javascript
 function somethingCool() {
@@ -145,10 +137,7 @@ function somethingCool() {
 d3.selectAll("circle")
 .on("mouseover",somethingCool)
 ```
-That select(this) is important, as it says that we're doing it to just this matched element not all of them, even though we allowed any to be selected with the selectAll().
-<br />
-You can add transitions to this to make even cooler events 
-
+That select(this) is important, as it says that we're doing it to just this matched element not all of them, even though we allowed any to be selected with the selectAll(). You can add transitions to this to make even cooler events:
 ```javascript
 function somethingCool() {
     d3.select(this)
@@ -165,9 +154,7 @@ d3.selectAll("circle")
 .on("mouseover",somethingCool)
 
 ```
-<br />
 We didn't cover this with transitions before, but you can chain transitions, which are fun to do with events:
-
 ```javascript
 function somethingCool() {
     d3.select(this)
@@ -198,7 +185,6 @@ function somethingCool() {
 d3.selectAll("circle")
 .on("mouseover",somethingCool)
 ```
-<br />
 Here's another one for fun:
 
 ```javascript
@@ -222,9 +208,8 @@ function somethingCool() {
 d3.selectAll("circle")
 .on("mouseover",somethingCool)
 ```
-<br />
----
 
+---
 ###Margins, Axes, and Transform() 
 For this, we'll be going through [Bostock's Margin](http://bl.ocks.org/mbostock/3019563) example. This is a great example to show:
 - Why we use margins
@@ -237,7 +222,6 @@ Open up the axes.html file, and let's walk through each part.
 
 *Think about the defaults.*
 
-
 ---
 ###First Example
 We're now going to go through an example by Mike Bostock for a scatterplot visualization. In this example, we'll learn about pulling data from a file into a visualization.
@@ -248,11 +232,7 @@ Get the files [here](http://bl.ocks.org/mbostock/3887118).
 ###D3 Resources
 Let's go through the [D3 Resource](/Resources.md) repository I set up and see what you have at your disposal.
 
-<br />
-<br />
-
 ##Final Challenge
-
 Take [one](http://bl.ocks.org/mbostock/3887118) [of](http://bl.ocks.org/mbostock/3884955) [these](http://bl.ocks.org/mbostock/3885304) [Bostock](http://bl.ocks.org/mbostock/9490313) [examples](http://bl.ocks.org/mbostock/3883245) and use your own data to make your own visualization using (enter in public opensource data)
 
 
