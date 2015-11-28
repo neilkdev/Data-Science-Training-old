@@ -1,20 +1,46 @@
 #D3 Technical Course - Part 1
 
+##Welcome to the D3 Technical Course!
+The goals for today are to learn:
+1. Javascript basics 
+2. Binding data to DOM elements
+3. Setting attributes based on data
+4. How to make a bar chart and a scatterplot 
 
-##D3
+######What is D3?
 >D3.js is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life using HTML, SVG, and CSS. D3’s emphasis on web standards gives you the full capabilities of modern browsers without tying yourself to a proprietary framework, combining powerful visualization components and a data-driven approach to DOM manipulation.
 *http://d3js.org/*
 
+####HTML
+One of the building blocks of any D3 visualization is HTML. D3 uses scalable vector graphics (SVG) in HTML documents to "host" the visualization. 
 
+![SVG](https://github.com/pstuffa/classWerk/blob/master/svg.png)
 
+Think of the SVG as the canvas for your visualization. To see something, you must draw it on the SVG. SVG's function like cartesian coordinate planes, so make sure if you plot something that it's within the coordinate range of the SVG. 
 
+![Coordinate](https://github.com/pstuffa/classWerk/blob/master/coordinate.png)
 
+####CSS
+D3 uses CSS to set the style of the elements in the visualization. You'll often see something like this at the top of D3 visualizaitons:
 
-##HTML
+```css
+body {
+  font: 10px sans-serif;
+}
 
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
 
+.dot {
+  stroke: #000;
+}
 
-##CSS
+```
+
 
 
 

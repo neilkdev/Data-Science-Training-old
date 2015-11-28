@@ -32,7 +32,11 @@
 
 
 ###Files
-
+- [index.html](https://github.com/pstuffa/classWerk/blob/master/files/index.html)
+- [goal.html](https://github.com/pstuffa/classWerk/blob/master/files/goal.html)
+- [axes.html](https://github.com/pstuffa/classWerk/blob/master/files/axes.html)
+- [scatterplot.html](https://github.com/pstuffa/classWerk/blob/master/files/scatterplot.html)
+- [data.tsv](https://github.com/pstuffa/classWerk/blob/master/files/data.tsv)
 
 
 
