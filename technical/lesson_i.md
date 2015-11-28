@@ -1,25 +1,29 @@
-#Javascript Basics
+##Javascript Basics
+
 
 ###Starting off 
-- Using the javascript console on Google Chrome
-- Download the index.html file
-- You can also pull up what you last entered, using the UP button
-- Start a HTTP server on your computer by going into terminal and into the directory with index.html
+- Open the Javascript Console in Google Chrome
+- Open index.html in your text editor
+- In Terminal/PC Console, Change to the directory with index.html
 - Type in: python -m SimpleHTTPServer
 - Then in a broswer, go to http://localhost:8000/index.html
 - You should see a white page with some text 
+
 
 ###Handy Javascript Console Tricks
 - Control+l clear your command screen
 - The style section allows you to easily change formatting
 - Open the Javascript console by hitting command+option+i
 - You can use the javascript console like a calculator 
-
+- You can see what you last entered by hitting UP
 
 ---
 
-### Variables ###
-Like python, we can set integers to variable and treat them like integers. The difference in javascript is we have to explicitly state that they are variables, or "var." Arrays can also be variables, like var Data = [1,2,3,4,5];
+###Variables
+In D3, as well as in most programming langauges, setting variables is very important functionality. It allows you to build upon a just a few configurations so your code scales and adjusts. In D3, a lot of what you'll write are variables, so that if you want to, say, adjust the size of your visualization, you can modify just a main width and height, which will then update the rest of the visualization (the size of the margins, the axes, the values in your visualization). In Javascript, which D3 is built on 
+
+
+In Javascript, we can set integers to variable and treat them like integers. The difference in javascript is we have to explicitly state that they are variables, or "var." Arrays can also be variables, like var Data = [1,2,3,4,5];
 
 
 Let's make a few variables:
