@@ -18,7 +18,7 @@
 - [Aligned Left D3 Tutorials](http://alignedleft.com/tutorials/d3)
 - [Manipulating Data in D3](http://www.jeromecukier.net/blog/2012/05/28/manipulating-data-like-a-boss-with-d3/)
 - [D3 MIXTAPES](http://enjalot.github.io/dot-enter/)
-
+- [Manipulating Data like a Boss](http://www.jeromecukier.net/blog/2012/05/28/manipulating-data-like-a-boss-with-d3/)
 ### D3 Playgrounds ###
 - [Tributary](http://tributary.io/)
 - [JS Fiddle](http://jsfiddle.net/)
