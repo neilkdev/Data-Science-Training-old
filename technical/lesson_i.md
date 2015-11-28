@@ -25,7 +25,7 @@ Think of the SVG as the canvas for your visualization. To see something, you mus
 ####CSS
 D3 uses CSS, a style sheet language, to set the style of the elements in the visualization. You'll often see something like this at the top of D3 visualizaitons:
 
-```cssf
+```css
 body {
   font: 10px sans-serif;
 }

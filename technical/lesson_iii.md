@@ -125,9 +125,7 @@ d3.select("p")
     * We defined the event function.
     * We specified where and when it should occur.
 
-*What's the mistake here?
 *How could we add this to our circles?
-
 ```javascript
 function somethingCool() {
     d3.select(this)
