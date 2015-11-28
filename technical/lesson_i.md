@@ -1,3 +1,23 @@
+#D3 Technical Course - Part 1
+
+
+##D3
+>D3.js is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life using HTML, SVG, and CSS. D3’s emphasis on web standards gives you the full capabilities of modern browsers without tying yourself to a proprietary framework, combining powerful visualization components and a data-driven approach to DOM manipulation.
+*http://d3js.org/*
+
+
+
+
+
+
+##HTML
+
+
+
+##CSS
+
+
+
 ##Javascript Basics
 
 ###Starting off 
@@ -7,7 +27,6 @@
 - Type in: python -m SimpleHTTPServer
 - Then in a broswer, go to http://localhost:8000/index.html
 - You should see a white page with some text 
-
 
 ###Handy Javascript Console Tricks
 - Control+l clear your command screen
