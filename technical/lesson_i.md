@@ -120,7 +120,7 @@ You can filter datasets with functions
 var data = [1,2,3,4,5]
 data.filter( function(x) { return x * 2 == 2;} );
 
-or 
+//or 
 
 var data = [1,2,3,4,5]
 data.filter( function(x) { if(x * 2 == 2) {return x;}} );
@@ -131,7 +131,7 @@ You can also map datasets with functions
 var data = [1,2,3,4,5]
 data.map( function(x) { return x * 2 == 2; } );
 
-or 
+//or 
 
 var data = [1,2,3,4,5]
 data.map( function(x) { if(x * 2 == 2) { return x; } } );
