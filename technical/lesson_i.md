@@ -25,7 +25,7 @@ Think of the SVG as the canvas for your visualization. To see something, you mus
 ####CSS
 D3 uses CSS, a style sheet language, to set the style of the elements in the visualization. You'll often see something like this at the top of D3 visualizaitons:
 
-```css
+```cssf
 body {
   font: 10px sans-serif;
 }
@@ -51,7 +51,7 @@ In this example, we're setting the font to 10px, sans-serif. The axis line & pat
 
 
 ##Javascript
-The third piece to D3 is Javascript. D3 is written in Javascript and is a Javascript framework.  
+D3 is a javascript framework, so for any D3 visualization, you'll be writing Javascript. Javascript is a very powerful web-based programming language. Today, we're going to cover a few Javascript essentials so that you can get started with D3. 
 
 * Open the Javascript Console in Google Chrome
 * Open index.html in your text editor
@@ -60,7 +60,7 @@ The third piece to D3 is Javascript. D3 is written in Javascript and is a Javasc
 * Then in a broswer, go to http://localhost:8000/index.html
 * You should see a white page with some text 
 
-###Handy Javascript Console Tricks
+#####Handy Javascript Console Tricks
 - Control+l clear your command screen
 - The style section allows you to easily change formatting
 - Open the Javascript console by hitting command+option+i
@@ -75,9 +75,7 @@ In D3, a lot of what you write are variables, so that if you want to, say, adjus
 To create a variables, type "var" then the variable name, followed by an "=". Here are a few examples:
 ```javascript
 var today = 'Monday';
-
 var tomorrow = 'Tuesday';
-
 var currentYear = 2015;
 ```
 Arrays can also be variables, like var numbers = [1,2,3,4,5];
@@ -110,8 +108,8 @@ Try entering a value into myFunction()
 
 ```javascript
 var data = [1,2,3,4,5]
-
 data.map( function(x) { return x * 2;} );
+
 ```
 *This will be very important in D3, as we will often make functions on the fly. The difference in D3 is that we won't necessarily nest the function within a map() function.*
 
@@ -120,26 +118,22 @@ data.map( function(x) { return x * 2;} );
 You can filter datasets with functions
 ```javascript
 var data = [1,2,3,4,5]
-
 data.filter( function(x) { return x * 2 == 2;} );
 
 or 
 
 var data = [1,2,3,4,5]
-
 data.filter( function(x) { if(x * 2 == 2) {return x;}} );
 ```
 
 You can also map datasets with functions
 ```javascript
 var data = [1,2,3,4,5]
-
 data.map( function(x) { return x * 2 == 2; } );
 
 or 
 
 var data = [1,2,3,4,5]
-
 data.map( function(x) { if(x * 2 == 2) { return x; } } );
 ```
 *Notice the difference in what those two return - the latter is what is more commonly used in D3*

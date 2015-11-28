@@ -225,8 +225,7 @@ d3.selectAll("circle")
 <br />
 ---
 
-### Margins, Axes, and Transform() ###
-
+###Margins, Axes, and Transform() 
 For this, we'll be going through [Bostock's Margin](http://bl.ocks.org/mbostock/3019563) example. This is a great example to show:
 - Why we use margins
 - What < g > tags are used for
@@ -241,20 +240,18 @@ Open up the axes.html file, and let's walk through each part.
 
 ---
 ###First Example
-
 We're now going to go through an example by Mike Bostock for a scatterplot visualization. In this example, we'll learn about pulling data from a file into a visualization.
 
 Get the files [here](http://bl.ocks.org/mbostock/3887118).
 
 ---
 ###D3 Resources
-
 Let's go through the [D3 Resource](/Resources.md) repository I set up and see what you have at your disposal.
 
 <br />
 <br />
 
-##Second Challenge
+##Final Challenge
 
 Take [one](http://bl.ocks.org/mbostock/3887118) [of](http://bl.ocks.org/mbostock/3884955) [these](http://bl.ocks.org/mbostock/3885304) [Bostock](http://bl.ocks.org/mbostock/9490313) [examples](http://bl.ocks.org/mbostock/3883245) and use your own data to make your own visualization using (enter in public opensource data)
 
