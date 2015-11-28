@@ -7,18 +7,20 @@ The goals for today are to learn:
 3. Setting attributes based on data
 4. How to make a bar chart and a scatterplot 
 
+![D3](https://github.com/pstuffa/classWerk/blob/master/images/d3.png)
+
 ######What is D3?
 >D3.js is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life using HTML, SVG, and CSS. D3’s emphasis on web standards gives you the full capabilities of modern browsers without tying yourself to a proprietary framework, combining powerful visualization components and a data-driven approach to DOM manipulation.
 *http://d3js.org/*
 
 ####HTML
-One of the building blocks of any D3 visualization is HTML. D3 uses scalable vector graphics (SVG) in HTML documents to "host" the visualization. 
+One of the building blocks of any D3 visualization is HTML. D3 uses scalable vector graphics (SVG) in HTML documents to "host" the visualization. SVGs are a great choice because they scale very well. Here's a comparison of an SVG enlarged and a raster image enlarged.
 
-![SVG](https://github.com/pstuffa/classWerk/blob/master/svg.png)
+![SVG](https://github.com/pstuffa/classWerk/blob/master/images/svg.png)
 
-Think of the SVG as the canvas for your visualization. To see something, you must draw it on the SVG. SVG's function like cartesian coordinate planes, so make sure if you plot something that it's within the coordinate range of the SVG. 
+Think of the SVG as the canvas for your visualization. To see something, you must draw it on the SVG. SVG have a coordinate planes, so make sure if you plot something that it's within the coordinate range of the SVG. Here's an example of an SVG with a width of 300 and height of 100. You'll see that the width and height start from the upper left corner.
 
-![Coordinate](https://github.com/pstuffa/classWerk/blob/master/coordinate.png)
+![Coordinate](https://github.com/pstuffa/classWerk/blob/master/images/coordinate.png)
 
 ####CSS
 D3 uses CSS to set the style of the elements in the visualization. You'll often see something like this at the top of D3 visualizaitons:
@@ -41,12 +43,8 @@ body {
 
 ```
 
-
-
-
 ##Javascript Basics
 
-###Starting off 
 - Open the Javascript Console in Google Chrome
 - Open index.html in your text editor
 - In Terminal/PC Console, Change to the directory with index.html
@@ -112,9 +110,7 @@ var data = [1,2,3,4,5]
 
 data.filter( function(x) { return x * 2 == 2;} );
 
-
 or 
-
 
 var data = [1,2,3,4,5]
 
