@@ -23,7 +23,7 @@ Think of the SVG as the canvas for your visualization. To see something, you mus
 ![Coordinate](https://github.com/pstuffa/classWerk/blob/master/images/coordinate.png)
 
 ####CSS
-D3 uses CSS to set the style of the elements in the visualization. You'll often see something like this at the top of D3 visualizaitons:
+D3 uses CSS, a style sheet language, to set the style of the elements in the visualization. You'll often see something like this at the top of D3 visualizaitons:
 
 ```css
 body {
@@ -42,15 +42,25 @@ body {
 }
 
 ```
+In this example, we're setting the font to the body tag to be 10px, sans-serif. The axis line & path have fill=none, a black stroke, and crispEdges. Elements with the dot class (.dot) have a black stroke. The syntax follows this structure - 
+* specify the element 
+* open {
+* specify the style
+* seperate each line by ;
+* close }
 
-##Javascript Basics
 
-- Open the Javascript Console in Google Chrome
-- Open index.html in your text editor
-- In Terminal/PC Console, Change to the directory with index.html
-- Type in: python -m SimpleHTTPServer
-- Then in a broswer, go to http://localhost:8000/index.html
-- You should see a white page with some text 
+##Javascript
+
+The third pieces to D3 is Javascript 
+
+
+* Open the Javascript Console in Google Chrome
+* Open index.html in your text editor
+* In Terminal/PC Console, Change to the directory with index.html
+* Type in: python -m SimpleHTTPServer
+* Then in a broswer, go to http://localhost:8000/index.html
+* You should see a white page with some text 
 
 ###Handy Javascript Console Tricks
 - Control+l clear your command screen
@@ -65,7 +75,7 @@ body {
 In D3, as well as in most programming langauges, setting variables is very important functionality. It allows you to build upon a just a few configurations so your code scales and adjusts. In D3, a lot of what you'll write are variables, so that if you want to, say, adjust the size of your visualization, you can modify just a main width and height, which will then update the rest of the visualization (the size of the margins, the axes, the values in your visualization). In Javascript, which D3 is built on 
 
 
-In Javascript, we can set integers to variable and treat them like integers. The difference in javascript is we have to explicitly state that they are variables, or "var." Arrays can also be variables, like var Data = [1,2,3,4,5];
+In Javascript, we can set integers to variable and treat them like integers. The difference in javascript is we have to explicitly state that they are variables, or "var." Arrays can also be variables, like var numbers = [1,2,3,4,5];
 
 
 Let's make a few variables:
