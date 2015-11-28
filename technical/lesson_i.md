@@ -2,10 +2,10 @@
 
 ##Welcome to the D3 Technical Course!
 The goals for today are to learn:
--1 Javascript basics 
--2 Binding data to DOM elements
--3 Setting attributes based on data
--4 How to make a bar chart and a scatterplot 
+* Javascript basics 
+* Binding data to DOM elements
+* Setting attributes based on data
+* How to make a bar chart and a scatterplot 
 
 ![D3](https://github.com/pstuffa/classWerk/blob/master/images/d3.png)
 
