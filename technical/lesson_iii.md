@@ -12,24 +12,24 @@ Let's go back to index.html, and try adding some transitions while we make chang
 var dataset = [10,20,30,40];
 
 var svg = d3.select("body").append("svg")
-.attr("width",700)
-.attr("height", 700);
+    .attr("width",700)
+    .attr("height", 700);
 
 var circles = svg.selectAll("circle");
 
 circles.data(dataset)
-.enter().append("circle")
-.attr("r", function(d) { return d*2; })
-.attr("cx", function(d,i) { return (i + 1) *100; } )
-.attr("cy", function(d,i) { return (i + 1) *100; } )
-.attr("fill", function(d) { if( d == '10' ) { return "red"; } 
+    .enter().append("circle")
+    .attr("r", function(d) { return d*2; })
+    .attr("cx", function(d,i) { return (i + 1) *100; } )
+    .attr("cy", function(d,i) { return (i + 1) *100; } )
+    .attr("fill", function(d) { if( d == '10' ) { return "red"; } 
                         else if( d == '20' ) { return "blue"; }
                         else if( d == '30' ) { return "green"; }
                         else if( d == '40' ) { return "orange"; }
     })
-.style("fill-opacity", .7)
-.style("stroke-width",".2em")
-.style("stroke",function(d) { if( d == '10' ) { return "red"; } 
+    .style("fill-opacity", 0.7)
+    .style("stroke-width",".2em")
+    .style("stroke",function(d) { if( d == '10' ) { return "red"; } 
                         else if( d == '20' ) { return "blue"; }
                         else if( d == '30' ) { return "green"; }
                         else if( d == '40' ) { return "orange"; }
@@ -41,26 +41,26 @@ Now let's add a trasition to the update:
 var dataset = [10,20,30,40];
 
 var svg = d3.select("body").append("svg")
-.attr("width",700)
-.attr("height", 700);
+    .attr("width",700)
+    .attr("height", 700);
 
 var circles = svg.selectAll("circle");
 
 circles.data(dataset)
-.enter().append("circle")
-.transition()
-.duration(2000)
-.attr("r", function(d) { return d*2; })
-.attr("cx", function(d,i) { return (i + 1) *100; } )
-.attr("cy", function(d,i) { return (i + 1) *100; } )
-.attr("fill", function(d) { if( d == '10' ) { return "red"; } 
+    .enter().append("circle")
+    .transition()
+    .duration(2000)
+    .attr("r", function(d) { return d*2; })
+    .attr("cx", function(d,i) { return (i + 1) *100; } )
+    .attr("cy", function(d,i) { return (i + 1) *100; } )
+    .attr("fill", function(d) { if( d == '10' ) { return "red"; } 
                         else if( d == '20' ) { return "blue"; }
                         else if( d == '30' ) { return "green"; }
                         else if( d == '40' ) { return "orange"; }
     })
-.style("fill-opacity", .7)
-.style("stroke-width",".2em")
-.style("stroke",function(d) { if( d == '10' ) { return "red"; } 
+    .style("fill-opacity", 0.7)
+    .style("stroke-width",".2em")
+    .style("stroke",function(d) { if( d == '10' ) { return "red"; } 
                         else if( d == '20' ) { return "blue"; }
                         else if( d == '30' ) { return "green"; }
                         else if( d == '40' ) { return "orange"; }
@@ -78,22 +78,22 @@ Let's play with some of the transition parameters to change our transitions:
 var newdata = [30,10,20,40];
 
 d3.select("svg").selectAll("circle")
-.data(newdata)
-.transition()
-.duration(2000)
-.ease("elastic")
-.delay(200)
-.attr("r", function(d) { return d*2; })
-.attr("cx", function(d,i) { return (i + 1) *100; } )
-.attr("cy", function(d,i) { return (i + 1) *100; } )
-.attr("fill", function(d) { if( d == '10' ) { return "red"; } 
+    .data(newdata)
+    .transition()
+    .duration(2000)
+    .ease("elastic")
+    .delay(200)
+    .attr("r", function(d) { return d*2; })
+    .attr("cx", function(d,i) { return (i + 1) *100; } )
+    .attr("cy", function(d,i) { return (i + 1) *100; } )
+    .attr("fill", function(d) { if( d == '10' ) { return "red"; } 
                         else if( d == '20' ) { return "blue"; }
                         else if( d == '30' ) { return "green"; }
                         else if( d == '40' ) { return "orange"; }
     })
-.style("fill-opacity", .7)
-.style("stroke-width",".2em")
-.style("stroke",function(d) { if( d == '10' ) { return "red"; } 
+    .style("fill-opacity", 0.7)
+    .style("stroke-width",".2em")
+    .style("stroke",function(d) { if( d == '10' ) { return "red"; } 
                         else if( d == '20' ) { return "blue"; }
                         else if( d == '30' ) { return "green"; }
                         else if( d == '40' ) { return "orange"; }
@@ -115,11 +115,11 @@ Let's go back to index.html and add this:
 ```javascript
 function somethingCool() {
     d3.select(this)
-      .style("color", "red");
+        .style("color", "red");
   }
 
 d3.select("p")
-.on("mouseover",somethingCool)
+    .on("mouseover",somethingCool)
 ```
 * What's going on here?
     * We defined the event function.
@@ -129,11 +129,11 @@ d3.select("p")
 ```javascript
 function somethingCool() {
     d3.select(this)
-      .style("fill", "red");
+        .style("fill", "red");
   }
 
 d3.selectAll("circle")
-.on("mouseover",somethingCool)
+    .on("mouseover",somethingCool)
 ```
 That select(this) is important, as it says that we're doing it to just this matched element not all of them, even though we allowed any to be selected with the selectAll(). You can add transitions to this to make even cooler events:
 ```javascript
@@ -143,13 +143,13 @@ function somethingCool() {
     .duration(5000)
     .ease("elastic")
     .delay(100)
-      .style("fill", "black")
-      .style("stroke-width","0em");
+        .style("fill", "black")
+        .style("stroke-width","0em");
       
   }
 
 d3.selectAll("circle")
-.on("mouseover",somethingCool)
+    .on("mouseover",somethingCool)
 
 ```
 We didn't cover this with transitions before, but you can chain transitions, which are fun to do with events:
@@ -160,8 +160,8 @@ function somethingCool() {
     .duration(2000)
     .ease("elastic")
     .delay(100)
-      .style("fill", "black")
-      .style("stroke-width","0em")
+        .style("fill", "black")
+        .style("stroke-width","0em")
     .transition()
     .duration(2000)
     .ease("elastic")
@@ -170,7 +170,7 @@ function somethingCool() {
                         else if( d == '30' ) { return "green"; }
                         else if( d == '40' ) { return "orange"; }
          })
-    .style("fill-opacity", .7)
+    .style("fill-opacity", 0.7)
     .style("stroke-width",".2em")
     .style("stroke",function(d) { if( d == '10' ) { return "red"; } 
                         else if( d == '20' ) { return "blue"; }
@@ -181,30 +181,30 @@ function somethingCool() {
   }
 
 d3.selectAll("circle")
-.on("mouseover",somethingCool)
+    .on("mouseover",somethingCool)
 ```
 Here's another one for fun:
 
 ```javascript
 function somethingCool() {
     d3.select(this)
-    .transition()
-    .duration(2000)
-    .ease("elastic")
-    .delay(100)
-    .attr("r", function(d) { return d*.25; })
-    .attr("cx", function(d,i) { return Math.random()*100; } )
-    .attr("cy", function(d,i) { return Math.random()*100; } )
-    .transition()
-    .duration(2000)
-    .ease("elastic")
-    .attr("r", function(d) { return d*2; })
-    .attr("cx", function(d,i) { return (i + 1) *100; } )
-    .attr("cy", function(d,i) { return (i + 1) *100; } );
+        .transition()
+        .duration(2000)
+        .ease("elastic")
+        .delay(100)
+        .attr("r", function(d) { return d*0.25; })
+        .attr("cx", function(d,i) { return Math.random()*100; } )
+        .attr("cy", function(d,i) { return Math.random()*100; } )
+        .transition()
+        .duration(2000)
+        .ease("elastic")
+        .attr("r", function(d) { return d*2; })
+        .attr("cx", function(d,i) { return (i + 1) *100; } )
+        .attr("cy", function(d,i) { return (i + 1) *100; } );
   }
 
 d3.selectAll("circle")
-.on("mouseover",somethingCool)
+    .on("mouseover",somethingCool)
 ```
 
 ---

@@ -17,13 +17,13 @@
         .attr("height", 600);
 
     svg.selectAll("rect")
-      .data(dataset)
-       .enter().append("rect")
-      .attr("x", function(d,i) { return i * 40; })
-      .attr("y", 10)
-      .attr("width", 30)
-      .attr("height", function(d) { return d * 10; })
-      .style("fill", function(d,i) { return colorScale(i); });
+        .data(dataset)
+      .enter().append("rect")
+        .attr("x", function (d,i) { return i * 40; })
+        .attr("y", 10)
+        .attr("width", 30)
+        .attr("height", function (d) { return d * 10; })
+        .style("fill", function (d,i) { return colorScale(i); });
 
 
     </script>

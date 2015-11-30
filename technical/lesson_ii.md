@@ -98,6 +98,14 @@ d3.select("p").data([10])
 ```
 See that __data__ property? That's your data!
 
+Try entering the following in your console:
+```javascript
+var dataset = [5, 8, 20, 22]
+d3.selectAll('p').data(dataset)
+```
+
+Inspect the the paragraphs and see what changed.
+
 Before we start going more into selections, let's talk about SVGs.
 
 
@@ -105,16 +113,16 @@ Before we start going more into selections, let's talk about SVGs.
 ###SVGs 
 For every D3 visualization, you will need a SVG, your canvas. SVGs are html objects, so can make them in html simply by writing:
 ```javascript
-<svg width="700" height="700"></svg>
+<svg width="700" height="400"></svg>
 ```
 
-Inside that SVG is where you place your objects, which must be SVG objects. Here's an example you can add to your basic.html file:
+Inside that SVG is where you place your objects, which must be SVG objects. Here's an example you can add to your index.html file:
 ```javascript
-<svg width="700" height="700">
-  <circle cx="100" cy="100" r="50" fill="red">
+<svg width="700" height="400">
+   <circle cx="100" cy="100" r="50" fill="red">
 </svg>
 ```
-Add this code to your index.html, and reload the page. Now, with your knowledge of select(), try the following:
+Add this code to your index.html, and reload the page. Now, with your knowledge of select(), try to do the following in the console window:
 ```
 Make the circle green
 Make the circle HUGE
@@ -145,8 +153,35 @@ d3.select("svg").selectAll("circle")
 ```
 Select the circle and look at the data property to confirm it's updated. That's the update method. Simply select your objects and use the data() function to update them with data. To note, you only want to do this when there's a 1 to 1 relationship between your objects and your data.
 
+Try adding the following to index.html in the script area:
+```javascript
+var dataset = [10, 5, 8, 20];
+
+d3.selectAll('p')
+    .data(dataset)
+    .text(function (d) {
+        return 'My data is ' + d;
+    });
+```
+
+Save the file and refresh the page in your browser. What just happened?
+
+Go back to index.html and modify the script:
+```javascript
+var dataset = [10, 5, 8, 20];
+
+d3.selectAll('h1')
+    .data(dataset)
+    .enter().append('h1')
+    .text(function (d) {
+        return 'My data is ' + d;
+    });
+```
+
+What's the difference between this and the previous code?
+
 ---
-Now, let's use a larger dataset, and try the enter method.
+Now, let's make some circles with the enter method.
 
 ```javascript
 // Define new dataset
@@ -160,17 +195,17 @@ d3.select("svg").selectAll("circle")
 
 ```javascript
 d3.select("svg")
-.selectAll("circle")
-.attr("r", function(d) { return d*2; })
-.attr("cx", function(d) { return d*10; } )
-.attr("cy", function(d) { return d*10; } )
-.attr("fill", function(d) { if( d == '10' ) { return "red"; } 
+    .selectAll("circle")
+    .attr("r", function (d) { return d*2; })
+    .attr("cx", function (d) { return d*10; } )
+    .attr("cy", function (d) { return d*10; } )
+    .attr("fill", function (d) { if( d == '10' ) { return "red"; } 
                         else if( d == '20' ) { return "blue"; }
                         else if( d == '30' ) { return "green"; }
     })
-.style("fill-opacity", .7)
-.style("stroke-width",".2em")
-.style("stroke",function(d) { if( d == '10' ) { return "red"; } 
+    .style("fill-opacity", 0.7)
+    .style("stroke-width",".2em")
+    .style("stroke",function (d) { if( d == '10' ) { return "red"; } 
                         else if( d == '20' ) { return "blue"; }
                         else if( d == '30' ) { return "green"; }
     });    
@@ -187,25 +222,25 @@ Ok, so now we know how to update and enter new data. Let's go over the exit() fu
 var newdataset = [20,30]
 //Select the circle, use the enter() function and append circles to match the data
 d3.select("svg").selectAll("circle")
-.data(newdataset)
-.exit().remove();
+    .data(newdataset)
+    .exit().remove();
 ```
 What happened? Is that right? We updated the data, removed the circle, but now we need to set the attributes of those circles based on the new data.
 
 Simply re-enter
 ```javascript
 d3.select("svg")
-.selectAll("circle")
-.attr("r", function(d) { return d*2; })
-.attr("cx", function(d) { return d*10; } )
-.attr("cy", function(d) { return d*10; } )
-.attr("fill", function(d) { if( d == '10' ) { return "red"; } 
+    .selectAll("circle")
+    .attr("r", function (d) { return d*2; })
+    .attr("cx", function (d) { return d*10; } )
+    .attr("cy", function (d) { return d*10; } )
+    .attr("fill", function (d) { if( d == '10' ) { return "red"; } 
                         else if( d == '20' ) { return "blue"; }
                         else if( d == '30' ) { return "green"; }
     })
-.style("fill-opacity", .7)
-.style("stroke-width",".2em")
-.style("stroke",function(d) { if( d == '10' ) { return "red"; } 
+    .style("fill-opacity", 0.7)
+    .style("stroke-width",".2em")
+    .style("stroke",function (d) { if( d == '10' ) { return "red"; } 
                         else if( d == '20' ) { return "blue"; }
                         else if( d == '30' ) { return "green"; }
     });    
@@ -234,16 +269,16 @@ Now that we got a good sense of selections, SVGs and how to bind data, let's go 
 
     var svg = d3.select("body").append("svg")
         .attr("width", 600)
-        .attr("height", 600)
+        .attr("height", 600);
 
     svg.selectAll("rect")
-      .data(dataset)
-       .enter().append("rect")
-      .attr("x", function(d,i) { return i * 40; })
-      .attr("y", 10)
-      .attr("width", 30)
-      .attr("height", function(d) { return d * 10; })
-      .style("fill", function(d,i) { return colorScale(i); });
+        .data(dataset)
+      .enter().append("rect")
+        .attr("x", function(d,i) { return i * 40; })
+        .attr("y", 10)
+        .attr("width", 30)
+        .attr("height", function(d) { return d * 10; })
+        .style("fill", function(d,i) { return colorScale(i); });
 
     </script>
   </body>

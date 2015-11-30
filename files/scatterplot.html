@@ -53,10 +53,10 @@ var svg = d3.select("body").append("svg")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
   // What is this data function?
-d3.tsv("data.tsv", function(error, data) {
+d3.tsv("data.tsv", function (error, data) {
 
   // What's this = + for?
-  data.forEach(function(d) {
+  data.forEach(function (d) {
     d.sepalLength = +d.sepalLength;
     d.sepalWidth = +d.sepalWidth;
   });
@@ -95,12 +95,11 @@ d3.tsv("data.tsv", function(error, data) {
     .enter().append("circle")
       .attr("class", "dot")
       .attr("r", 3.5)
-      .attr("cx", function(d) { return x(d.sepalWidth); })
-      .attr("cy", function(d) { return y(d.sepalLength); })
+      .attr("cx", function (d) { return x(d.sepalWidth); })
+      .attr("cy", function (d) { return y(d.sepalLength); })
       .style("fill", function(d) { return color(d.species); });
 
   // What's going on this with this color domain?
-  // What's going on here?
   var legend = svg.selectAll(".legend")
       .data(color.domain())
     .enter().append("g")
@@ -118,7 +117,7 @@ d3.tsv("data.tsv", function(error, data) {
       .attr("y", 9)
       .attr("dy", ".35em")
       .style("text-anchor", "end")
-      .text(function(d) { return d; });
+      .text(function (d) { return d; });
 });
 
 </script>
