@@ -22,13 +22,13 @@ The goal for this lesson will be for you to understand how goal.html works. Let'
         .attr("height", 600)
 
     svg.selectAll("rect")
-      .data(dataset)
-       .enter().append("rect")
-      .attr("x", function(d,i) { return i * 40; })
-      .attr("y", 10)
-      .attr("width", 30)
-      .attr("height", function(d) { return d * 10; })
-      .style("fill", function(d,i) { return colorScale(i); });
+        .data(dataset)
+      .enter().append("rect")
+        .attr("x", function(d,i) { return i * 40; })
+        .attr("y", 10)
+        .attr("width", 30)
+        .attr("height", function(d) { return d * 10; })
+        .style("fill", function(d,i) { return colorScale(i); });
 
     </script>
   </body>
@@ -119,7 +119,7 @@ For every D3 visualization, you will need a SVG, your canvas. SVGs are html obje
 Inside that SVG is where you place your objects, which must be SVG objects. Here's an example you can add to your index.html file:
 ```javascript
 <svg width="700" height="400">
-   <circle cx="100" cy="100" r="50" fill="red">
+    <circle cx="100" cy="100" r="50" fill="red">
 </svg>
 ```
 Add this code to your index.html, and reload the page. Now, with your knowledge of select(), try to do the following in the console window:
@@ -149,7 +149,7 @@ Let's go back to index.html, and try binding data to our cicle using these metho
 var dataset = [10]
 // Select the cirlce, and update it with data
 d3.select("svg").selectAll("circle")
-.data(dataset);
+    .data(dataset);
 ```
 Select the circle and look at the data property to confirm it's updated. That's the update method. Simply select your objects and use the data() function to update them with data. To note, you only want to do this when there's a 1 to 1 relationship between your objects and your data.
 
@@ -188,8 +188,8 @@ Now, let's make some circles with the enter method.
 var dataset = [10,20,30]
 //Select the circle, use the enter() function and append circles to match the data
 d3.select("svg").selectAll("circle")
-.data(dataset)
-.enter().append("circle");
+    .data(dataset)
+    .enter().append("circle");
 ```
 * Where are the circles?
 
