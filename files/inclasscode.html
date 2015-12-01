@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>D3 Basics</title>
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <style type="text/css">
+        /* CSS goes here */
+        
+        /*
+        I give my svg a hot pink border to ensure
+        that it has rendered on the screen
+        */
+        /*
+        svg {
+            border: 1px solid #f0f;
+        }
+        */
+        body {
+            font-family: Arial;
+            font-size: 10px
+        }
+        /* 
+        set the fill on axis line & axis path to none
+        otherwise it will auto fill with black
+        */
+        .axis line,
+        .axis path {
+            fill: none;
+            stroke-width: 1px;
+            stroke: #ddd;
+        }
+
+        </style>
+    </head>
+
+    <body>
+        <!-- HTML goes here -->
+
+        
+
+    <script type="text/javascript">
+        // D3 goes here
+        var margin = {top: 20, right: 10, bottom: 40, left: 30};
+
+        var width = 700 - margin.left - margin.right,
+            height = 400 - margin.top - margin.bottom;
+
+        var svg = d3.select("body").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        // create the x & y scales and set their ranges
+        // range maps to the number of pixels on the screen
+        // we set domain later which maps to the data
+        var xScale = d3.scale.linear()
+            .range([0, width]);
+
+        var yScale = d3.scale.linear()
+            .range([height, 0]);
+
+        var xAxis = d3.svg.axis()
+            .scale(xScale)
+            .orient('bottom')
+            // I prefer ticks that create a grid
+            // To create a grid set ticksize to the full width & height
+            .tickSize(height);
+
+        var yAxis = d3.svg.axis()
+            .scale(yScale)
+            .orient('left')
+            .tickSize(-width);
+
+        // creates a color scale using one of d3s built-in color scales
+        var color = d3.scale.category10();
+
+        // loads the data and fires the ready function
+        d3.tsv('data.tsv', ready);
+
+        function ready (err, irises) {
+            if (err) console.warn(error);
+
+            // formats the data as numbers, not strings
+            irises.forEach(function (d) {
+                d.petalWidth = +d.petalWidth;
+                d.petalLength = +d.petalLength;
+                d.sepalWidth = +d.sepalWidth;
+                d.sepalLength = +d.sepalLength;
+
+            })
+
+            // domain maps to the scale of the data
+            // here I set the domain from 0 to the maximum datapoint
+            // you could also use d3.extent to set it to the min and max
+            xScale.domain([0, d3.max(irises, function (d) {
+                    return d.sepalWidth;
+                })
+            ]).nice();
+
+            yScale.domain([0, d3.max(irises, function (d) {
+                    return d.sepalLength;
+                })
+            ]).nice();
+
+            // after setting up the axes, you must call the axes to have them render
+            svg.append('g')
+                .attr('class', 'x axis')
+                .call(xAxis);
+
+            svg.append('g')
+                .attr('class', 'y axis')
+                .call(yAxis);
+
+            // adds the circles to the page, one for each data object in irises
+            var circles = svg.selectAll('.dot')
+                .data(irises)
+              .enter().append('g')
+                .append('circle')
+                .attr('class', 'dot')
+                .attr('transform', function (d) {
+                    // you could instead use the cx and cy attributes
+                    // but transforming the points makes it easy to add things like text later
+                    return 'translate(' + xScale(d.sepalWidth) + ',' + yScale(d.sepalLength) + ')';
+                })
+                .attr('r', 3)
+                // you could instead set the color in CSS by adding a class of the species name
+                // .attr('class', function (d) {
+                //     return 'iris ' + d.species;
+                // })
+                .style('fill', function (d) {
+                    return color(d.species);
+                });
+            
+        }
+
+
+    </script>
+
+    </body>
+</html>

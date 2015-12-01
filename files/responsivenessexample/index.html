@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<style type="text/css">
+
+    body {
+        font-family: 'arial', sans-serif;
+        font-size: 14px;
+        max-width: 960px;
+        margin: 20px auto;
+    }
+
+    svg {
+        border:1px solid #f0f;
+    }
+
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: #dedede;
+    }
+
+    .axis text {
+        font-family: sans-serif;
+        font-size: 12px;
+        fill: #999;
+    }
+
+    .circle {
+        fill: #f0f;
+    }
+
+</style>
+
+<body>
+    <h2>Anscombe's Quartet</h2>
+    <div class='mega-container'></div>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
+
+<script>
+
+    var margin = {top: 10, right: 10, bottom: 30, left: 30};
+
+    var width = 720 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+    var xScale = d3.scale.linear()
+        .range([0, width]);
+
+    var yScale = d3.scale.linear()
+        .range([height, 0]);
+
+    var xAxis = d3.svg.axis()
+        .scale(xScale)
+        .orient('bottom')
+        .tickSize(-height)
+        .tickPadding(8);
+
+    var yAxis = d3.svg.axis()
+        .scale(yScale)
+        .tickSize(-width)
+        .tickPadding(8)
+        .orient('left');
+
+    var svg = d3.select(".mega-container").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        // .attr("viewBox", "0 0 " + width + " " + height)
+        .attr('class', 'svg')
+      .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // $(window).resize(function() {
+    //     var width = d3.select.width(),
+    //         height = $("#right-stackedArea").height();
+    //     svg.attr("width", width)
+    //         .attr("height", height);
+    //   });
+
+    // $(document).ready(function() {
+    //     var width = d3.select('.svg').width(),
+    //         height = $("#right-stackedArea").height();
+    //     svg.attr("width", width)
+    //         .attr("height", height);
+    // });
+
+    d3.tsv('quartet.tsv', ready);
+
+    function ready (err, data) {
+        if (err) console.warn('error', err);
+
+        console.log(data);
+
+        data.forEach(function (d) {
+            d.x = +d.x;
+            d.y = +d.y;
+        });
+
+        console.log(data);
+
+        var groupI = data.filter(function (d) {
+            return d.group === 'I';
+        });
+
+        xScale.domain([0, d3.max(groupI, function (d) {
+            return d.x + 1;
+        })]);
+
+        yScale.domain([0, d3.max(groupI, function (d) {
+            return d.y + 1;
+        })]);
+
+        var xAxisGroup = svg.append('g')
+            .attr('class', 'x axis')
+            .attr('transform', 'translate(0,' + height + ')')
+            .call(xAxis);
+
+        var yAxisGroup = svg.append('g')
+            .attr('class', 'y axis')
+            .call(yAxis);
+
+        var circle = svg.selectAll('.circle')
+            .data(groupI)
+          .enter().append('circle')
+            .attr('class', 'circle')
+            .attr('r', 4)
+            .attr('transform', function (d) {
+                return 'translate(' + xScale(d.x) + ',' + yScale(d.y) + ')';
+            });
+
+        d3.select(window).on('resize', resized);
+
+        function resized() {
+            var w = d3.select('.mega-container').node().clientWidth;
+            
+            d3.select('.svg')
+                .attr('width', w);
+
+            xScale
+                .range([0, w]);
+
+            xAxisGroup
+                .call(xAxis);
+
+            yAxis
+                .tickSize(-w);
+
+            yAxisGroup
+                .call(yAxis);
+
+            circle
+                .attr('transform', function (d) {
+                    return 'translate(' + xScale(d.x) + ',' + yScale(d.y) + ')';
+                });
+        }
+
+        console.log(groupI);
+
+    }
+
+
+
+</script>
